@@ -1,0 +1,120 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{url}
+\usepackage{unicode}
+\usepackage[polish]{babel}
+\usepackage{titlesec}
+
+\newcommand{\sectionbreak}{\clearpage}
+\author{Adam Talarczyk}
+\title{Projektowanie aplikacji mobilnych}
+\frenchspacing
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+ 
+        \Huge
+        \textbf{Projektowanie aplikacji mobilnych}
+ 
+        \vspace{0.5cm}
+        \LARGE
+        Odczyt jakości powietrza ze stacji pomiarowych
+ 
+        \vspace{1.5cm}
+ 
+        \textbf{Adam Talarczyk}
+ 
+        \vfill
+ 
+        \vspace{0.8cm}
+ 
+        \Large
+        Wydział Nauk Ścisłych i Technicznych
+        
+        Uniwersytet Śląski
+        
+        
+		Semestr letni 2020/2020
+ 
+    \end{center}
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Wstęp}
+\subsection{Założenia projektowe}
+Głównym zalożeniem aplikacji jest pobieranie danych ze stacji pomiarowych oraz wyświetlanie ich w czytelny dla użytkownika sposób. Aplikacja przewiduje wyszukiwanie stacji na mapie, dodawanie lub usuwanie ich z zakładek, oraz prezentacja wybranych stacji na stronie głównej. Dane dostarczane przez aplikację pochodzą z publicznego interfejsu programistycznego aplikacji (https://powietrze.gios.gov.pl/php/content/api), który udostępnia wyniki automatycznych pomiarów dwutlenku siarki (SO2), dwutlenku azotu (NO2), pyłu PM10, pyłu PM2,5, tlenku węgla (CO), benzenu (C6H6), ozonu (O3). Dodatkowo, gdy poziom zanieczyszczenia powietrza dla najbliższej stacji pomiarowej przekroczy normę, aplikacja poinformuje o tym użytkownika przy pomocy powiadomienia.
+
+Aplikacja przeznaczona jest wyłącznie na smartfony i tablety firmy Apple. Napisana została w języku Swift przy użyciu narzędzia Xcode.
+\subsection{Wymagania funkcjonalne}
+\begin{itemize}
+ 	\item Wyświetlanie na mapie wszystkich stacji pomiarowych na terytorium polski
+  	\item Dodanie stacji pomiarowej do zakładek
+  	\item Usuniecie stacji pomiarowej z zakładek
+	\item Wyświetlenie szczegółowych pomiarów wybranej stacji
+	\item Wysyłanie powiadomień użytkownikowi
+	\item Wyświetlanie najbliższej stacji pomiarowej w lokalizacji użytkownika
+\end{itemize}
+\subsection{Wymagania niefunkcjonalne}
+\begin{itemize}
+ 	\item Aplikacja automatycznie odświeża dane o pełnej godzinie (wynika to ze sposobu działania API)
+	\item Działanie aplikacji oraz czas pobierania danych ograniczone są do przepustowości interfejsu programistycznego
+	\item Komunikacja z serwerem API odbywa się poprzez protokół HTTP
+	\item Interfejs użytkownika zaprojektowany jest zgodnie z wytycznymi Apple
+\end{itemize}
+
+\section{Specyfikacja zewnętrzna}
+\subsection{Instrukcja obsługi}
+test
+
+
+\section{Specyfikacja wewnętrzna}
+\subsection{Struktura aplikacji}
+test
+\subsection{Elementy składowe}
+test
+\subsection{Biblioteki i API}
+\subsubsection{Interfejs API portalu "Jakość Powietrza"  GIOŚ}
+Interfejs API portalu "Jakość Powietrza"  GIOŚ umożliwia dostęp do danych dotyczących jakości powietrza w Polsce, wytwarzanych w ramach Państwowego Monitoringu Środowiska i gromadzonych w bazie JPOAT2,0
+
+Dostęp do danych odbywa się poprzez zapytanie HTTP GET na podany w dokumentacji adres. Udostępniane dane zwracane są w formiacie JSON. Interfejs udostępnia dane o stacjach pomiarowych, stanowiskach pomiarowych (lista dostępnych stanowisk pomiarowych na wybranej stacji pomiarowej), dane pomiarowe oraz indeks jakości powietrza.
+
+Lista adresów potrzebna do pobrania danych:
+\begin{itemize}
+ 	\item \verb|http://api.gios.gov.pl/pjp-api/rest/station/findAll| - lista wszystkich stacji pomiarowych
+	\item \verb|http://api.gios.gov.pl/pjp-api/rest/station/sensors/{stationId}| - lista dostępnych sensorów dla stacji pomiarowej na podstawie identyfikatora stacji
+	\item \verb|http://api.gios.gov.pl/pjp-api/rest/data/getData/{sensorId}| - dane pomiarowe dla sensora o podanym w adresie id
+	\item \verb|http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{stationId}| - indeks jakości powietrza na podstawie identyfikatora stacji pomiarowej
+\end{itemize}
+\subsubsection{Framework MapKit}
+Narzędzia pozwalające na wyświetlanie map wraz ze wszystkimi niezbędnymi elementami, takimi jak adnotacje, punkty, nakładki.
+
+\subsection{Kod źródłowy}
+Komentarze do kodu źródłowego (mogą być wygenerowane automatycznie)
+\subsection{Uruchomienie aplikacji w środowisku deweloperskim}
+Do uruchomienia aplikacji wymagany jest komputer firmy Apple z zainstalowaną aplikacją Xcode.
+
+
+\section{Wnioski}
+
+\newpage
+\addcontentsline{toc}{section}{Spis rysunków}
+\listoffigures
+\newpage
+
+\begin{thebibliography}{9}
+\addcontentsline{toc}{section}{Literatura}
+\bibitem{mapkit}
+\verb|https://developer.apple.com/documentation/mapkit/|
+\bibitem{cllocationmanager}
+\verb|https://developer.apple.com/documentation/corelocation/cllocationmanager|
+
+
+
+\end{thebibliography}
+\end{document}
