@@ -16,6 +16,9 @@
 		2E69078A24699C8400ACA7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E69078924699C8400ACA7FA /* Assets.xcassets */; };
 		2E69078D24699C8400ACA7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E69078B24699C8400ACA7FA /* LaunchScreen.storyboard */; };
 		2E6907952469A0E700ACA7FA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6907942469A0E700ACA7FA /* SettingsViewController.swift */; };
+		2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7862469C21F00E027CB /* StationModel.swift */; };
+		2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78A2469C29500E027CB /* SensorModel.swift */; };
+		2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78C2469C2C000E027CB /* IndexModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		2E69078C24699C8400ACA7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E69078E24699C8400ACA7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E6907942469A0E700ACA7FA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		2EFDC7862469C21F00E027CB /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
+		2EFDC78A2469C29500E027CB /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
+		2EFDC78C2469C2C000E027CB /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,18 +68,29 @@
 		2E69077A24699C8200ACA7FA /* AirQuality */ = {
 			isa = PBXGroup;
 			children = (
+				2E69078124699C8200ACA7FA /* MapViewController.swift */,
+				2E69077F24699C8200ACA7FA /* HomeViewController.swift */,
+				2E6907942469A0E700ACA7FA /* SettingsViewController.swift */,
+				2EFDC7852469C1AD00E027CB /* DataModel */,
 				2E69077B24699C8200ACA7FA /* AppDelegate.swift */,
 				2E69077D24699C8200ACA7FA /* SceneDelegate.swift */,
-				2E69077F24699C8200ACA7FA /* HomeViewController.swift */,
-				2E69078124699C8200ACA7FA /* MapViewController.swift */,
 				2E69078324699C8200ACA7FA /* Main.storyboard */,
-				2E6907942469A0E700ACA7FA /* SettingsViewController.swift */,
 				2E69078924699C8400ACA7FA /* Assets.xcassets */,
 				2E69078B24699C8400ACA7FA /* LaunchScreen.storyboard */,
 				2E69078E24699C8400ACA7FA /* Info.plist */,
 				2E69078624699C8200ACA7FA /* AirQuality.xcdatamodeld */,
 			);
 			path = AirQuality;
+			sourceTree = "<group>";
+		};
+		2EFDC7852469C1AD00E027CB /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				2EFDC7862469C21F00E027CB /* StationModel.swift */,
+				2EFDC78A2469C29500E027CB /* SensorModel.swift */,
+				2EFDC78C2469C2C000E027CB /* IndexModel.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,11 +165,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E69078224699C8200ACA7FA /* MapViewController.swift in Sources */,
+				2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */,
 				2E69078024699C8200ACA7FA /* HomeViewController.swift in Sources */,
+				2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */,
 				2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */,
 				2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */,
 				2E69078824699C8200ACA7FA /* AirQuality.xcdatamodeld in Sources */,
 				2E6907952469A0E700ACA7FA /* SettingsViewController.swift in Sources */,
+				2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +317,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQ732L5UV6;
 				INFOPLIST_FILE = AirQuality/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -314,6 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQ732L5UV6;
 				INFOPLIST_FILE = AirQuality/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
