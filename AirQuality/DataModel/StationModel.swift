@@ -9,5 +9,22 @@
 import UIKit
 
 class StationModel: NSObject {
-
+    override init(){
+        NSLog("Init Station")
+    }
+    
+    var id: Int = 0
+    var stationName: String = ""
+    var gegrLat: Double = 0.0
+    var gegrLon: Double = 0.0
+    var city: CityModel = CityModel()
+    var addressStreet: String?
+    
+    //each station has own Sensors:
+    var listOfSensors = Array<SensorModel>()
+    
+    func getSensors(){
+        
+    }
+    
 }

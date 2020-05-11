@@ -19,6 +19,10 @@
 		2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7862469C21F00E027CB /* StationModel.swift */; };
 		2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78A2469C29500E027CB /* SensorModel.swift */; };
 		2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78C2469C2C000E027CB /* IndexModel.swift */; };
+		2EFDC7912469F2AA00E027CB /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7902469F2AA00E027CB /* CityModel.swift */; };
+		2EFDC7932469F34800E027CB /* ParamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7922469F34800E027CB /* ParamModel.swift */; };
+		2EFDC7952469F6A500E027CB /* ValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7942469F6A500E027CB /* ValueModel.swift */; };
+		2EFDC7972469F7E300E027CB /* StationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7962469F7E300E027CB /* StationsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		2EFDC7862469C21F00E027CB /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		2EFDC78A2469C29500E027CB /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		2EFDC78C2469C2C000E027CB /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
+		2EFDC7902469F2AA00E027CB /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		2EFDC7922469F34800E027CB /* ParamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamModel.swift; sourceTree = "<group>"; };
+		2EFDC7942469F6A500E027CB /* ValueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueModel.swift; sourceTree = "<group>"; };
+		2EFDC7962469F7E300E027CB /* StationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,7 @@
 				2E69078124699C8200ACA7FA /* MapViewController.swift */,
 				2E69077F24699C8200ACA7FA /* HomeViewController.swift */,
 				2E6907942469A0E700ACA7FA /* SettingsViewController.swift */,
+				2EFDC78F2469F18B00E027CB /* LogicController */,
 				2EFDC7852469C1AD00E027CB /* DataModel */,
 				2E69077B24699C8200ACA7FA /* AppDelegate.swift */,
 				2E69077D24699C8200ACA7FA /* SceneDelegate.swift */,
@@ -89,8 +98,19 @@
 				2EFDC7862469C21F00E027CB /* StationModel.swift */,
 				2EFDC78A2469C29500E027CB /* SensorModel.swift */,
 				2EFDC78C2469C2C000E027CB /* IndexModel.swift */,
+				2EFDC7902469F2AA00E027CB /* CityModel.swift */,
+				2EFDC7922469F34800E027CB /* ParamModel.swift */,
+				2EFDC7942469F6A500E027CB /* ValueModel.swift */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		2EFDC78F2469F18B00E027CB /* LogicController */ = {
+			isa = PBXGroup;
+			children = (
+				2EFDC7962469F7E300E027CB /* StationsController.swift */,
+			);
+			path = LogicController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,13 +184,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EFDC7912469F2AA00E027CB /* CityModel.swift in Sources */,
+				2EFDC7932469F34800E027CB /* ParamModel.swift in Sources */,
 				2E69078224699C8200ACA7FA /* MapViewController.swift in Sources */,
 				2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */,
 				2E69078024699C8200ACA7FA /* HomeViewController.swift in Sources */,
 				2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */,
+				2EFDC7972469F7E300E027CB /* StationsController.swift in Sources */,
 				2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */,
 				2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */,
 				2E69078824699C8200ACA7FA /* AirQuality.xcdatamodeld in Sources */,
+				2EFDC7952469F6A500E027CB /* ValueModel.swift in Sources */,
 				2E6907952469A0E700ACA7FA /* SettingsViewController.swift in Sources */,
 				2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */,
 			);

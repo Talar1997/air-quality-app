@@ -24,17 +24,23 @@ class MapViewController: UIViewController {
     }
     
     func setupLocationManager(){
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
     
     func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled(){
             setupLocationManager()
             checkLocationAuthorization()
+            addPin();
         }
         else{
-        
+            //some alert
         }
+    }
+    
+    func addPin(){
+        let pin = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 50.286263, longitude: 19.104078))
+        mapView.addAnnotation(pin)
     }
     
     func centerViewOnUserLocation(){

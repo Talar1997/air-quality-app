@@ -9,5 +9,17 @@
 import UIKit
 
 class SensorModel: NSObject {
-
+    override init(){
+        NSLog("Init Station")
+    }
+    
+    var id: Int = 0
+    var stationId: Int = 0
+    
+    //each sensor can provide own parameters
+    var listOfParams = Array<ParamModel>()
+    
+    func getParams(){
+        
+    }
 }

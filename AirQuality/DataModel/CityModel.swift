@@ -1,5 +1,5 @@
 //
-//  IndexModel.swift
+//  CityModel.swift
 //  AirQuality
 //
 //  Created by Talar on 11/05/2020.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class IndexModel: NSObject {
+class CityModel: NSObject {
     override init(){
         NSLog("Init Station")
     }
     
     var id: Int = 0
-    var stCalcDate: String = ""
-    var stIndexLevelId: Int = 0
-    var indexLevelName: String = ""
+    var name: String = ""
+    var communeName: String = ""
+    var districtName: String = ""
+    var proviceName: String = ""
 }
