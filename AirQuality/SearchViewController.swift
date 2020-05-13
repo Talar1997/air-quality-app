@@ -1,17 +1,20 @@
 //
-//  SettingsViewController.swift
+//  SearchViewController.swift
 //  AirQuality
 //
-//  Created by Talar on 11/05/2020.
+//  Created by Talar on 13/05/2020.
 //  Copyright © 2020 Talarczyk. All rights reserved.
 //
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
+
         // Do any additional setup after loading the view.
     }
     
