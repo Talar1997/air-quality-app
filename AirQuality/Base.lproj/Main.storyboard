@@ -21,7 +21,7 @@
                         <barButtonItem key="backBarButtonItem" title="Powrót" id="xH9-86-76q"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="P2O-6m-bSe">
                             <connections>
-                                <segue destination="woT-ej-PEF" kind="show" id="LWT-Qu-M0M"/>
+                                <segue destination="oN9-Wf-Imt" kind="show" id="VEW-Kf-178"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -86,7 +86,7 @@
                     <tabBarItem key="tabBarItem" title="Początek" image="house.fill" catalog="system" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="kSh-qy-Hpy">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -331,54 +331,36 @@
             </objects>
             <point key="canvasLocation" x="2163.768115942029" y="-406.47321428571428"/>
         </scene>
-        <!--Szukaj stacji-->
-        <scene sceneID="7lv-bg-rIg">
+        <!--Szukaj-->
+        <scene sceneID="fN8-nO-DKG">
             <objects>
-                <viewController id="woT-ej-PEF" customClass="SearchViewController" customModule="AirQuality" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Wjl-UA-jQA">
+                <tableViewController id="oN9-Wf-Imt" customClass="SearchTableViewController" customModule="AirQuality" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8aF-7U-j8Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ITh-rg-iL4">
-                                <rect key="frame" x="0.0" y="148.5" width="414" height="713.5"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="ITh-rg-iL4" firstAttribute="top" secondItem="6PN-0Z-rPi" secondAttribute="top" id="NVU-jT-Tb6"/>
-                            <constraint firstItem="6PN-0Z-rPi" firstAttribute="bottom" secondItem="ITh-rg-iL4" secondAttribute="bottom" id="PHX-vs-nIk"/>
-                            <constraint firstItem="ITh-rg-iL4" firstAttribute="leading" secondItem="6PN-0Z-rPi" secondAttribute="leading" id="dDr-kY-Zb3"/>
-                            <constraint firstItem="6PN-0Z-rPi" firstAttribute="trailing" secondItem="ITh-rg-iL4" secondAttribute="trailing" id="l1E-Sd-AGu"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6PN-0Z-rPi"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Szukaj stacji" id="G3v-Y3-BwJ">
-                        <barButtonItem key="backBarButtonItem" title="Powrót" id="bzL-gq-HTD"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3Rt-kR-wSm">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Rt-kR-wSm" id="lq9-zO-Ye9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oN9-Wf-Imt" id="xVa-cl-Vhh"/>
+                            <outlet property="delegate" destination="oN9-Wf-Imt" id="e2u-Qt-RSa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Szukaj" id="HYp-jg-vtq">
+                        <barButtonItem key="backBarButtonItem" title="Powrót" id="6AP-1P-K2d"/>
                     </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1qm-8d-pb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aRN-Ps-Qnv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="2016"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="DYf-JH-caZ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ySz-W7-buX" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="KxT-Je-HnH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="RUV-Mq-TwV">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="woT-ej-PEF" kind="relationship" relationship="rootViewController" id="sBZ-W6-YyC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MLw-Ha-0cZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="345" y="2016"/>
+            <point key="canvasLocation" x="2934.7826086956525" y="2063.8392857142858"/>
         </scene>
         <!--Szczegóły-->
         <scene sceneID="gom-it-QEQ">
@@ -405,7 +387,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aIO-xX-Ygd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="jfi-X1-m83">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -424,7 +406,7 @@
                     <tabBarItem key="tabBarItem" title="Ustawienia" image="wrench.fill" catalog="system" id="Xi4-DB-53h"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="D5d-x7-XpX">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -436,9 +418,27 @@
             </objects>
             <point key="canvasLocation" x="1254" y="-406"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cRJ-W5-You">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="02z-tc-T7f" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Mtz-P1-Ww3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oN9-Wf-Imt" kind="relationship" relationship="rootViewController" id="oAa-sS-U1H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C0A-Dj-OMa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2024.6376811594205" y="2063.8392857142858"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sBZ-W6-YyC"/>
+        <segue reference="oAa-sS-U1H"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
