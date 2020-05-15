@@ -191,7 +191,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-QX-6HM">
-                                                    <rect key="frame" x="349" y="11" width="23" height="22"/>
+                                                    <rect key="frame" x="371" y="11" width="23" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="oAr-QX-6HM" secondAttribute="height" multiplier="22:21" id="9Qp-NV-56a"/>
                                                     </constraints>
@@ -203,7 +203,7 @@
                                             <constraints>
                                                 <constraint firstItem="oAr-QX-6HM" firstAttribute="top" secondItem="x1M-98-qj6" secondAttribute="topMargin" id="1Vd-v1-5WR"/>
                                                 <constraint firstItem="oAr-QX-6HM" firstAttribute="centerY" secondItem="x1M-98-qj6" secondAttribute="centerY" id="9jz-UR-mek"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="oAr-QX-6HM" secondAttribute="trailing" constant="22" id="Mwf-vJ-WKD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oAr-QX-6HM" secondAttribute="trailing" id="Mwf-vJ-WKD"/>
                                                 <constraint firstItem="oAr-QX-6HM" firstAttribute="baseline" secondItem="VpG-aY-zn0" secondAttribute="baseline" id="NiB-eo-zFi"/>
                                                 <constraint firstItem="oAr-QX-6HM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VpG-aY-zn0" secondAttribute="trailing" constant="8" symbolic="YES" id="dy6-9Y-QXw"/>
                                                 <constraint firstItem="VpG-aY-zn0" firstAttribute="leading" secondItem="x1M-98-qj6" secondAttribute="leadingMargin" id="qSz-3K-Tqf"/>
@@ -263,9 +263,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adam Talarczyk" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c25-SF-fd3">
-                                                    <rect key="frame" x="260" y="11" width="132" height="22"/>
+                                                    <rect key="frame" x="267" y="11" width="121" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="c25-SF-fd3" secondAttribute="height" multiplier="6:1" id="amV-nn-CpJ"/>
+                                                        <constraint firstAttribute="width" secondItem="c25-SF-fd3" secondAttribute="height" multiplier="6:1" constant="-11" id="amV-nn-CpJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -279,7 +279,7 @@
                                                 <constraint firstItem="c25-SF-fd3" firstAttribute="firstBaseline" secondItem="YQb-M2-Ic6" secondAttribute="firstBaseline" id="Uhh-1V-fgr"/>
                                                 <constraint firstItem="c25-SF-fd3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YQb-M2-Ic6" secondAttribute="trailing" constant="8" symbolic="YES" id="dji-bZ-7fe"/>
                                                 <constraint firstItem="c25-SF-fd3" firstAttribute="baseline" secondItem="YQb-M2-Ic6" secondAttribute="baseline" id="ojq-1h-sfC"/>
-                                                <constraint firstAttribute="trailing" secondItem="c25-SF-fd3" secondAttribute="trailing" constant="22" id="pWj-KA-xhg"/>
+                                                <constraint firstAttribute="trailing" secondItem="c25-SF-fd3" secondAttribute="trailing" constant="26" id="pWj-KA-xhg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -340,7 +340,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ITh-rg-iL4">
-                                <rect key="frame" x="0.0" y="148.5" width="414" height="664.5"/>
+                                <rect key="frame" x="0.0" y="148.5" width="414" height="713.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -438,7 +438,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LWT-Qu-M0M"/>
+        <segue reference="sBZ-W6-YyC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>

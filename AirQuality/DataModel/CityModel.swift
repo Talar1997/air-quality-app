@@ -8,12 +8,16 @@
 
 import UIKit
 
-class CityModel: NSObject {
-    override init(){
-        NSLog("Init Station")
+public class CityModel {
+    init(json: [String: Any]){
+        id = json["id"] as? Int ?? -1
+        name = json["name"] as? String ?? ""
+        communeName = json["communeName"] as? String ?? ""
+        districtName = json["districtName"] as? String ?? ""
+        proviceName = json["proviceName"] as? String ?? ""
     }
     
-    var id: Int = 0
+    var id: Int = -1
     var name: String = ""
     var communeName: String = ""
     var districtName: String = ""

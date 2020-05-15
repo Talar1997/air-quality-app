@@ -14,8 +14,13 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
-
+        self.getStations();
         // Do any additional setup after loading the view.
+    }
+    
+    func getStations(){
+        let stationsController = StationsController()
+        stationsController.getAllStations()
     }
     
 
