@@ -8,30 +8,46 @@
 
 import UIKit
 
+struct Commune: Codable{
+    var communeName: String
+    var districtName: String
+    var provinceName: String
+}
+
+struct City: Codable{
+    var id: Int
+    var name: String
+    var commune: Commune
+}
+
+struct Station: Codable {
+    var id: Int
+    var stationName: String
+    var gegrLat: String
+    var gegrLon: String
+    var city: City
+    var addressStreet: String?
+}
+
 class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
-        self.getStations();
-        // Do any additional setup after loading the view.
+        
+        let jsonUrlString = "http://api.gios.gov.pl/pjp-api/rest/station/findAll"
+        guard let url = URL(string: jsonUrlString) else { return }
+        
+        URLSession.shared.dataTask(with: url){ (data, response, error) in
+            guard let data = data else { return }
+            
+            do{
+                let stations = try JSONDecoder().decode([Station].self, from: data)
+                print(stations) 
+            } catch let jsonErr {
+                print("Error: ", jsonErr)
+            }
+        }.resume()
     }
-    
-    func getStations(){
-        let stationsController = StationsController()
-        stationsController.getAllStations()
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
