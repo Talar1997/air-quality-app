@@ -11,6 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
+    
+    var stations = [Station]()
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -18,9 +20,30 @@ class MapViewController: UIViewController {
     let regionInMeter: Double = 20000;
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        getStationArray()
         locationManager.delegate = self
         checkLocationServices()
+        super.viewDidLoad()
+    }
+    
+    public func setPinsOnMap(){
+        self.stations.forEach { (station) in
+            addPin(station: station)
+        }
+    }
+    
+    public func getStationArray(){
+        let stationsController = StationsController()
+        
+        stationsController.fetchAllStations { (data, response, err) in
+            self.stations = stationsController.prepareData(data: data)
+            self.assignStations(arrayOfStations: self.stations)
+        }
+    }
+    
+    public func assignStations(arrayOfStations: [Station]){
+        stations = arrayOfStations
+        setPinsOnMap()
     }
     
     func setupLocationManager(){
@@ -31,16 +54,16 @@ class MapViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled(){
             setupLocationManager()
             checkLocationAuthorization()
-            addPin();
         }
         else{
             //some alert
         }
     }
     
-    func addPin(){
-        let pin = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 50.286263, longitude: 19.104078))
-        mapView.addAnnotation(pin)
+    func addPin(station: Station){
+        let location = CLLocationCoordinate2D(latitude: Double(station.gegrLat)!, longitude: Double(station.gegrLon)!)
+        let pin = MKPlacemark(coordinate: location)
+        self.mapView.addAnnotation(pin)
     }
     
     func centerViewOnUserLocation(){

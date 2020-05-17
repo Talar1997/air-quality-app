@@ -15,26 +15,30 @@ public class StationsController {
     var stations = [Station]()
     
     init(){
-        print("Init All Stations")
+        print("Stations Controller initializated")
     }
     
-    func getAllStations() -> [Station]{
-        var result = [Station]()
+    func fetchAllStations(completion: @escaping (Data?, URLResponse?, Error?) -> ()){
         let jsonUrlString = "http://api.gios.gov.pl/pjp-api/rest/station/findAll"
         let url = URL(string: jsonUrlString)
         
-        URLSession.shared.dataTask(with: url!){ (data, response, error) in
-            guard let data = data else { return }
-            
-            do{
-                self.stations = try JSONDecoder().decode([Station].self, from: data)
-                result = self.stations
-                print("im here")
-                print(result)
-            } catch let jsonErr {
-                print("Error: ", jsonErr)
-            }
+        URLSession.shared.dataTask(with: url!){ (data, res, err) in
+            completion(data, res, err)
         }.resume()
+    }
+    
+    func prepareData(data: Data?) -> [Station]{
+        var result = [Station]()
+        guard let data = data else {
+            print("No data")
+            return [Station]()
+        }
+        
+        do{
+            result = try JSONDecoder().decode([Station].self, from: data)
+        } catch let jsonErr {
+            print("Error: ", jsonErr)
+        }
         
         return result
     }

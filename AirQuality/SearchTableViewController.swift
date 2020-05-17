@@ -16,9 +16,8 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
 
     override func viewDidLoad() {
         getStationArray()
-        
-        super.viewDidLoad()
         searchBarSetup()
+        super.viewDidLoad()
     }
     
     private func searchBarSetup(){
@@ -31,20 +30,12 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
     }
     
     public func getStationArray(){
-        let jsonUrlString = "http://api.gios.gov.pl/pjp-api/rest/station/findAll"
-        guard let url = URL(string: jsonUrlString) else { return }
+        let stationsController = StationsController()
         
-        URLSession.shared.dataTask(with: url){ (data, response, error) in
-            guard let data = data else { return }
-            
-            do{
-                self.stations = try JSONDecoder().decode([Station].self, from: data)
-                self.allStations = self.stations
-                //print(self.stations)
-            } catch let jsonErr {
-                print("Error: ", jsonErr)
-            }
-        }.resume()
+        stationsController.fetchAllStations { (data, response, err) in
+            self.stations = stationsController.prepareData(data: data)
+            self.allStations = self.stations
+        }
     }
 
     // MARK: - Table view data source
