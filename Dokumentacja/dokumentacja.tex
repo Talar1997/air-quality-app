@@ -22,7 +22,7 @@
  
         \vspace{0.5cm}
         \LARGE
-        Odczyt jakości powietrza ze stacji pomiarowych
+        ``AirQuality - Odczyt jakości powietrza ze stacji pomiarowych''
  
         \vspace{1.5cm}
  
@@ -34,11 +34,10 @@
  
         \Large
         Wydział Nauk Ścisłych i Technicznych
-        
+
         Uniwersytet Śląski
-        
-        
-		Semestr letni 2020/2020
+
+	Semestr letni 2020/2020
  
     \end{center}
 \end{titlepage}
@@ -50,7 +49,7 @@
 \subsection{Założenia projektowe}
 Głównym zalożeniem aplikacji jest pobieranie danych ze stacji pomiarowych oraz wyświetlanie ich w czytelny dla użytkownika sposób. Aplikacja przewiduje wyszukiwanie stacji na mapie, dodawanie lub usuwanie ich z zakładek, oraz prezentacja wybranych stacji na stronie głównej. Dane dostarczane przez aplikację pochodzą z publicznego interfejsu programistycznego aplikacji (https://powietrze.gios.gov.pl/php/content/api), który udostępnia wyniki automatycznych pomiarów dwutlenku siarki (SO2), dwutlenku azotu (NO2), pyłu PM10, pyłu PM2,5, tlenku węgla (CO), benzenu (C6H6), ozonu (O3). Dodatkowo, gdy poziom zanieczyszczenia powietrza dla najbliższej stacji pomiarowej przekroczy normę, aplikacja poinformuje o tym użytkownika przy pomocy powiadomienia.
 
-Aplikacja przeznaczona jest wyłącznie na smartfony i tablety firmy Apple. Napisana została w języku Swift przy użyciu narzędzia Xcode.
+Aplikacja przeznaczona jest wyłącznie na smartfony firmy Apple. Napisana została w języku Swift przy użyciu narzędzia Xcode.
 \subsection{Wymagania funkcjonalne}
 \begin{itemize}
  	\item Wyświetlanie na mapie wszystkich stacji pomiarowych na terytorium polski
@@ -59,6 +58,7 @@ Aplikacja przeznaczona jest wyłącznie na smartfony i tablety firmy Apple. Napi
 	\item Wyświetlenie szczegółowych pomiarów wybranej stacji
 	\item Wysyłanie powiadomień użytkownikowi
 	\item Wyświetlanie najbliższej stacji pomiarowej w lokalizacji użytkownika
+	\item Obsługa trybu nocnego
 \end{itemize}
 \subsection{Wymagania niefunkcjonalne}
 \begin{itemize}
@@ -70,17 +70,52 @@ Aplikacja przeznaczona jest wyłącznie na smartfony i tablety firmy Apple. Napi
 
 \section{Specyfikacja zewnętrzna}
 \subsection{Instrukcja obsługi}
-test
+Użytkownik po uruchomieniu aplikacji i zaakceptowaniu komunikatu o usłuchach lokalizacji znajduje się na stronie głównej, na której na samym początku widzi tylko najbliższą w okolicy stację pomiarową. Na dolnym pasku nawigacji ma on do dyspozycji:
+\begin{itemize}
+ 	\item Stronę główną (na której się znajduje)
+	\item Mapę
+	\item Ustawienia
+\end{itemize}
 
+Po kliknięciu w zakładkę mapy zostanie przeniesiony do widoku, gdzie na mapie zaznaczone punktami są wszystkie dostępne stacje pomiarowe. Użytkownik może oddalać, przybliżać oraz przesuwać się po mapie. Jego lokalizacja również jest uwzględniona (z dokładnością do 100 metrów). Po kliknięciu w punkt ze stacją otwarte zostają szczegóły stacji pomiarowej, gdzie znajdują się wszystkie informacje o sensorach oraz pomiarach. Użytkownik może dodać stację pomiarową do zakładek, wówczas na stronie głównej zaraz pod najbliższą w okolicy stacją zostają wyświetlone wszystkie stacje z zakładek.
+
+Użytkownik może również wyszukać stację po jej nazwie (która zazwyczaj zawiera nazwę miasta). W tym celu trzeba wejść na stronę główną i w prawym górnym rogu kliknąć przycisk lupy. Otworzy się wówczas widok z listą wszystkich stacji pomiarowych (około 190). By zainicjować wyszukiwanie trzeba przejechać palcem od góry do dołu, wtedy wyświetli się pasek wyszukiwania, w którym wpisać można odpowiednią frazę. Wybór stacji, tak jak w przypadku zakładki mapy otworzy nam widok ze szczegółami.
+
+Zakładka ustawienia na chwile obecną przechowuje informacje o autorze, w przyszłości jednak planowane jest zaimplementowanie ustawień lokalizacji i powiadomień.
 
 \section{Specyfikacja wewnętrzna}
 \subsection{Struktura aplikacji}
-test
-\subsection{Elementy składowe}
-test
+Szkielet aplikacji opiera się o kilka rodzajów klas, które spełniają różne zadania:
+\begin{itemize}
+ 	\item Kontrolery widoków - odpowiedzialne za wyświetlanie danych zgodnie z ich przeznaczeniem, włączają się do tego klasy wyświetlające mapę, widok strony głównej oraz widok wyszukiwania stacji pomiarowych:  \verb|MapViewController.swift|,  \verb|HomeViewController.swift|, 
+ 
+\verb|SearchTableViewController.swift|
+	\item Kontrolery logiki aplikacji - klasy, które realizują niezbędną logikę biznesową, czyli pobranie danych z odpowiedniego węzła końcowego API, przypisanie danych do odpowiednich struktur. W skład tej kategorii wchodzą klasy realizujące pobieranie danych:
+
+ \verb|StationsController.swift|
+	\item Modele danych - odpowiednio przygotowane struktury danych, na których potem wykonywane są operacje. Modele zostały zaprojektowane na podstawie danych, jakie dostarcza API ``Jakość Powietrza'' GIOŚ. Zastosowane przeze mnie struktury danych:  \verb|StationModel.swift|,  
+
+\verb|CityModel.swift|,  \verb|CommuneModel.swift|,  \verb|SensorModel.swift|,  
+
+\verb|IndexModel.swift|,  \verb|ParamModel.swift| oraz  \verb|ValueModel.swift|. 
+\end{itemize}
+
+Po uruchomieniu odpowiedniego widoku (np. kliknięcie w zakładkę mapy) kontroler widoku inicjalizuje kontroler logiki, który zwraca odpowiednie dane ``zapakowane'' w odpowiednią strukturę danych. Ponieważ dane z API zwracane są w formacie JSON, kontroler ma za zadanie zdekodować je oraz ustawić ich odpowiedni format. Posiadając komplet danych, kontroler widoku jest w stanie wyświetlić na ekranie smartfona gotowy widok.
+Dodatkowo, aplikacja posiada odpowiedni folder na zasoby (grafiki, ikony, itp.) o nazwie \verb|Assets.xcassets|, plik konfiguracyjny \verb|info.plist| (property list - który swoją składnią przypomina pliki XML) oraz specjalną tablicę do projektowania widoków oraz interakcji między nimi  \verb|Main.storyboard|.
+
+Z powyżej listy interesującą pozycją może wydawać się plik konfiguracyjny, ponieważ do poprawnego działania aplikacji wymagane było dodanie następujących kluczy:
+\begin{itemize}
+ 	\item ``Privacy - Location When In Use'' - komunikat podczas żądania lokalizacji od użytkownik
+	\item ``App Tranport Security Settings'', ``Exception Domains'', ``NSIncludesSubdomains'', ``NSExceptionAllowInsecureHTTPLoads'' - biała lista adresów, z którymi aplikacja może się komunikować - bez tego klucza nie istaniała by możliwość by pobrać dane z publicznego API.
+\end{itemize}
+
+\subsection{Wzorce projektowe}
+W programowaniu aplikacji mobilnych w języku Swift najbardziej popularnym wzorcem projektowym są delegacje (``Delegate pattern''). Delegacja jest wzorcem z programowania obiektowego, w którym obiekt zamiast sam wykonać pewną operację deleguje ją (zleca do wykonania) innemu obiektowi pomocniczemu (delegatowi). Następuje tu więc odwrócenie odpowiedzialności. Delegat jest odpowiedzialny za wykonanie zadania obiektu delegującego. Delegacje realizują podobne założenia do dziedziczenia jednak stosuje się je w miejscach, gdzie dziedziczenie może być niewygodne w implementacji.
+
+
 \subsection{Biblioteki i API}
-\subsubsection{Interfejs API portalu "Jakość Powietrza"  GIOŚ}
-Interfejs API portalu "Jakość Powietrza"  GIOŚ umożliwia dostęp do danych dotyczących jakości powietrza w Polsce, wytwarzanych w ramach Państwowego Monitoringu Środowiska i gromadzonych w bazie JPOAT2,0
+\subsubsection{Interfejs API portalu ``Jakość Powietrza'' GIOŚ}
+Interfejs API portalu ``Jakość Powietrza''  GIOŚ umożliwia dostęp do danych dotyczących jakości powietrza w Polsce, wytwarzanych w ramach Państwowego Monitoringu Środowiska i gromadzonych w bazie JPOAT2,0
 
 Dostęp do danych odbywa się poprzez zapytanie HTTP GET na podany w dokumentacji adres. Udostępniane dane zwracane są w formiacie JSON. Interfejs udostępnia dane o stacjach pomiarowych, stanowiskach pomiarowych (lista dostępnych stanowisk pomiarowych na wybranej stacji pomiarowej), dane pomiarowe oraz indeks jakości powietrza.
 
@@ -94,13 +129,34 @@ Lista adresów potrzebna do pobrania danych:
 \subsubsection{Framework MapKit}
 Narzędzia pozwalające na wyświetlanie map wraz ze wszystkimi niezbędnymi elementami, takimi jak adnotacje, punkty, nakładki.
 
+Implementacja wymaga sprawdzenia, czu urządzenie użytkownika posiada włączone usługi lokalizacyjne oraz czy użytkownik nadał uprawnienia do pobierania jego lokalizacji.
+
 \subsection{Kod źródłowy}
 Komentarze do kodu źródłowego (mogą być wygenerowane automatycznie)
+
+
 \subsection{Uruchomienie aplikacji w środowisku deweloperskim}
-Do uruchomienia aplikacji wymagany jest komputer firmy Apple z zainstalowaną aplikacją Xcode.
+Do uruchomienia aplikacji wymagany jest komputer firmy Apple z zainstalowaną aplikacją Xcode. Po ściągnięciu i otwarciu projektu wystarczy wybrać urządzenie z listy na górnym pasku a następnie wcisnąc przycisk odpowiedzialny za uruchomienie. Jeżeli wybrane urządzenie nie jest fizycznym smartfonem, uruchomiony zostanie emulator, który w ciągu kilku minut zainicjalizuje naszą aplikację. Warto zwrócić uwagę, że korzystając z emulatora można doświadczać problemów z poprawnym wyświetlaniem lokalizacji użytkownika, dlatego w celu przetestowania aplikacji sugerowane jest użycie fizycznego urządzenia.
 
 
-\section{Wnioski}
+\section{Podsumowanie}
+\subsection{Trudności}
+Podczas tworzenia aplikacji napotkałem wiele trudności i problemów, które wymagały zasięgnięcia porady w internecie. Niektóre z tych problemów wynikają ze specyfiki języka Swift (który bazuje na Objective-C) lub z nawyków, które nabyłem programując w innych technologiach.
+
+Język Swift posiada bardzo specyficzną składnię czerpiącą wiele z nowoczesnych języków. Ciężko było przywyknąć mi do nietypowych deklaracji zmiennych, np. \verb|let| oraz \verb|var|, które w jęzuku JavaScript nie różnią się za bardzo od siebie - tutaj jednak, ta pierwsza definiuje nam stałą wartość, której nie można już później zmienić, druga definicja to deklaracja zwykłej zmiennej. Ciekawą rzeczą, którą poznałem jest również wyrażenie \newline \verb|guard [wyrażenie] else { kod aplikacji }|. Jest to nic innego jak \verb|if|, który wykona kod w klamrach tylko wtedy, gdy wartość wyrażenia przyjmie fałsz. Będąc przy temacie składni nie może zabraknąć informacji o tzw. ``optional chaining'', które w kwietniu 2020 dopiero zostało wprowadzone w języku JavaScript. Polega to na tym, że nie musimy każdorazowo sprawdzać instrukcją \verb|if| czy nasza zmienna, do której chcemy się odnieść istnieje Wykorzystuje się do tego znak zapytania. Pozwala to zredukować ilość nadmiarowego kodu. Przykład:\newline
+Wyrażenie \verb|let sensors = obj.station && obj.station.sensors| \newline
+Możemy zastąpić poprzez: \verb|let sensors = obj.station?.sensors|\newline Jest to ułatwienie, które w ostatnim czasie jest implementowane również w innych językach.
+
+
+Obsługa asynchronicznych funkcji też znacznie różni się od tych, do których przyzwyczaił mnie JavaScript. Pobierając dane z API oczekuje się, że widok wygeneruje się dopiero po tym jak wygenerowana zostanie odpowiedź. We wspomnianym wcześniej JavaScripcie możliwe jest to za pomocą wyrażeń \verb|async| oraz \verb|await|. Tutaj niestety sytuacja jest dużo trudniejsza. W języku Swift wymagane jest zaimplementowanie funkcji \verb|completion|. Oficjalna dokumentacja określa to jako ``funkcje domknięcia (closures)'' i przyrównuje je do bloków w Objective-C lub wyrażeń lambda w języku Java  
+
+
+Ostatnią trudnością w programowaniu aplikacji na iOS jest fakt, że można je tworzyć tylko na urządzeniach Apple. Według mnie praca na laptopie i małym ekranie jest dużo bardziej męcząca niż wykonywanie tego samego zadania na komputerze stacjonarnym.
+
+\subsection{Wnioski}
+1. API GIOŚ które nie jest rest
+2. Łatwy w użyciu debugger, który nie wymaga konfiguracji
+4. Swift skupia się bardzo na delegatach w sposób, w który nie był mi dotąd znany
 
 \newpage
 \addcontentsline{toc}{section}{Spis rysunków}
@@ -113,6 +169,8 @@ Do uruchomienia aplikacji wymagany jest komputer firmy Apple z zainstalowaną ap
 \verb|https://developer.apple.com/documentation/mapkit/|
 \bibitem{cllocationmanager}
 \verb|https://developer.apple.com/documentation/corelocation/cllocationmanager|
+\bibitem{delegationpatter}
+\verb|http://programowanie.siminskionline.pl/resource/wp/ood_strategy.pdf|
 
 
 
