@@ -16,6 +16,7 @@
 		2E69078A24699C8400ACA7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E69078924699C8400ACA7FA /* Assets.xcassets */; };
 		2E69078D24699C8400ACA7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E69078B24699C8400ACA7FA /* LaunchScreen.storyboard */; };
 		2E9ACA3A246F3031000F51A7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */; };
+		2E9ACA3C24719964000F51A7 /* CommuneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA3B24719964000F51A7 /* CommuneModel.swift */; };
 		2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7862469C21F00E027CB /* StationModel.swift */; };
 		2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78A2469C29500E027CB /* SensorModel.swift */; };
 		2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78C2469C2C000E027CB /* IndexModel.swift */; };
@@ -37,6 +38,7 @@
 		2E69078C24699C8400ACA7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E69078E24699C8400ACA7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		2E9ACA3B24719964000F51A7 /* CommuneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommuneModel.swift; sourceTree = "<group>"; };
 		2EFDC7862469C21F00E027CB /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		2EFDC78A2469C29500E027CB /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		2EFDC78C2469C2C000E027CB /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
@@ -96,9 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				2EFDC7862469C21F00E027CB /* StationModel.swift */,
+				2EFDC7902469F2AA00E027CB /* CityModel.swift */,
+				2E9ACA3B24719964000F51A7 /* CommuneModel.swift */,
 				2EFDC78A2469C29500E027CB /* SensorModel.swift */,
 				2EFDC78C2469C2C000E027CB /* IndexModel.swift */,
-				2EFDC7902469F2AA00E027CB /* CityModel.swift */,
 				2EFDC7922469F34800E027CB /* ParamModel.swift */,
 				2EFDC7942469F6A500E027CB /* ValueModel.swift */,
 			);
@@ -194,6 +197,7 @@
 				2EFDC7972469F7E300E027CB /* StationsController.swift in Sources */,
 				2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */,
 				2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */,
+				2E9ACA3C24719964000F51A7 /* CommuneModel.swift in Sources */,
 				2E69078824699C8200ACA7FA /* AirQuality.xcdatamodeld in Sources */,
 				2EFDC7952469F6A500E027CB /* ValueModel.swift in Sources */,
 				2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */,
@@ -350,7 +354,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = talarczyk.AirQuality;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -368,7 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = talarczyk.AirQuality;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
