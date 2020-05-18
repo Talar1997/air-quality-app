@@ -61,9 +61,10 @@ class MapViewController: UIViewController {
     }
     
     func addPin(station: Station){
-        let location = CLLocationCoordinate2D(latitude: Double(station.gegrLat)!, longitude: Double(station.gegrLon)!)
-        let pin = MKPlacemark(coordinate: location)
-        self.mapView.addAnnotation(pin)
+        let stationAnnotation = MKPointAnnotation()
+        stationAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(station.gegrLat)!, longitude: Double(station.gegrLon)!)
+        stationAnnotation.title = station.stationName
+        self.mapView.addAnnotation(stationAnnotation)
     }
     
     func centerViewOnUserLocation(){

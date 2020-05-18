@@ -49,11 +49,18 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stationCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stationCell", for: indexPath) as? DetailsTableViewCell
         
-        cell.textLabel!.text = stations[indexPath.row].stationName
+        cell?.textLabel!.text = stations[indexPath.row].stationName
+        cell?.station = stations[indexPath.row]
 
-        return cell
+        return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
+        vc?.station = stations[indexPath.row]
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 
 }

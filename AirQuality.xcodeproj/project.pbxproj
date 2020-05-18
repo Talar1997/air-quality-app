@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E13864C2472DF7500CCA1C3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */; };
+		2E13864E2472EB6B00CCA1C3 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13864D2472EB6B00CCA1C3 /* DetailsTableViewCell.swift */; };
 		2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69077B24699C8200ACA7FA /* AppDelegate.swift */; };
 		2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69077D24699C8200ACA7FA /* SceneDelegate.swift */; };
 		2E69078024699C8200ACA7FA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69077F24699C8200ACA7FA /* HomeViewController.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		2E13864D2472EB6B00CCA1C3 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		2E69077824699C8200ACA7FA /* AirQuality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirQuality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E69077B24699C8200ACA7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E69077D24699C8200ACA7FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 				2E69078124699C8200ACA7FA /* MapViewController.swift */,
 				2E69077F24699C8200ACA7FA /* HomeViewController.swift */,
 				2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */,
+				2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */,
+				2E13864D2472EB6B00CCA1C3 /* DetailsTableViewCell.swift */,
 				2EFDC78F2469F18B00E027CB /* LogicController */,
 				2EFDC7852469C1AD00E027CB /* DataModel */,
 				2E69077B24699C8200ACA7FA /* AppDelegate.swift */,
@@ -201,6 +207,8 @@
 				2E69078824699C8200ACA7FA /* AirQuality.xcdatamodeld in Sources */,
 				2EFDC7952469F6A500E027CB /* ValueModel.swift in Sources */,
 				2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */,
+				2E13864E2472EB6B00CCA1C3 /* DetailsTableViewCell.swift in Sources */,
+				2E13864C2472DF7500CCA1C3 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
