@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         getStationArray()
+        mapView.delegate = self
         locationManager.delegate = self
         checkLocationServices()
         super.viewDidLoad()
@@ -61,9 +62,11 @@ class MapViewController: UIViewController {
     }
     
     func addPin(station: Station){
-        let stationAnnotation = MKPointAnnotation()
+        let stationAnnotation = CustomPinModel()
         stationAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(station.gegrLat)!, longitude: Double(station.gegrLon)!)
         stationAnnotation.title = station.stationName
+        stationAnnotation.station = station
+        
         self.mapView.addAnnotation(stationAnnotation)
     }
     
@@ -112,5 +115,14 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
+    }
+}
+
+extension MapViewController: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
+        let customPin = view.annotation as! CustomPinModel
+        vc?.station = customPin.station
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
