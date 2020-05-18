@@ -16,3 +16,15 @@ struct Station: Codable {
     var city: City
     var addressStreet: String?
 }
+
+struct City: Codable{
+    var id: Int
+    var name: String
+    var commune: Commune
+}
+
+struct Commune: Codable{
+    var communeName: String
+    var districtName: String
+    var provinceName: String
+}

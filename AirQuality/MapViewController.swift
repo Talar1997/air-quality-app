@@ -48,7 +48,7 @@ class MapViewController: UIViewController {
     }
     
     func setupLocationManager(){
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
     }
     
     func checkLocationServices(){
@@ -121,8 +121,10 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
-        let customPin = view.annotation as! CustomPinModel
+        
+        guard let customPin = view.annotation as? CustomPinModel else { return }
         vc?.station = customPin.station
         self.navigationController?.pushViewController(vc!, animated: true)
+        
     }
 }

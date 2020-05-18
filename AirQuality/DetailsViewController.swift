@@ -19,6 +19,9 @@ class DetailsViewController: UIViewController {
     var station: Station?
     
     override func viewDidLoad() {
+        //load index depends on idStation
+        //load sensors depends on idStation
+        //foreach sensors get values depends on stationId
         super.viewDidLoad()
         
         TestLabel.text = station?.stationName

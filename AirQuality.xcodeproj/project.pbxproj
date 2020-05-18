@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2E13864C2472DF7500CCA1C3 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */; };
-		2E13864E2472EB6B00CCA1C3 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13864D2472EB6B00CCA1C3 /* DetailsTableViewCell.swift */; };
 		2E1386502472FF2000CCA1C3 /* CustomPinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13864F2472FF2000CCA1C3 /* CustomPinModel.swift */; };
+		2E13865224732E3500CCA1C3 /* SensorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13865124732E3500CCA1C3 /* SensorsController.swift */; };
+		2E13865424733C4600CCA1C3 /* IndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13865324733C4600CCA1C3 /* IndexController.swift */; };
+		2E13865624733EFA00CCA1C3 /* SensorValueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E13865524733EFA00CCA1C3 /* SensorValueController.swift */; };
 		2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69077B24699C8200ACA7FA /* AppDelegate.swift */; };
 		2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69077D24699C8200ACA7FA /* SceneDelegate.swift */; };
 		2E69078024699C8200ACA7FA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E69077F24699C8200ACA7FA /* HomeViewController.swift */; };
@@ -19,20 +21,19 @@
 		2E69078A24699C8400ACA7FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E69078924699C8400ACA7FA /* Assets.xcassets */; };
 		2E69078D24699C8400ACA7FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E69078B24699C8400ACA7FA /* LaunchScreen.storyboard */; };
 		2E9ACA3A246F3031000F51A7 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */; };
-		2E9ACA3C24719964000F51A7 /* CommuneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9ACA3B24719964000F51A7 /* CommuneModel.swift */; };
 		2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7862469C21F00E027CB /* StationModel.swift */; };
 		2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78A2469C29500E027CB /* SensorModel.swift */; };
 		2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78C2469C2C000E027CB /* IndexModel.swift */; };
-		2EFDC7912469F2AA00E027CB /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7902469F2AA00E027CB /* CityModel.swift */; };
-		2EFDC7932469F34800E027CB /* ParamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7922469F34800E027CB /* ParamModel.swift */; };
 		2EFDC7952469F6A500E027CB /* ValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7942469F6A500E027CB /* ValueModel.swift */; };
 		2EFDC7972469F7E300E027CB /* StationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7962469F7E300E027CB /* StationsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		2E13864D2472EB6B00CCA1C3 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		2E13864F2472FF2000CCA1C3 /* CustomPinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinModel.swift; sourceTree = "<group>"; };
+		2E13865124732E3500CCA1C3 /* SensorsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsController.swift; sourceTree = "<group>"; };
+		2E13865324733C4600CCA1C3 /* IndexController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexController.swift; sourceTree = "<group>"; };
+		2E13865524733EFA00CCA1C3 /* SensorValueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorValueController.swift; sourceTree = "<group>"; };
 		2E69077824699C8200ACA7FA /* AirQuality.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirQuality.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E69077B24699C8200ACA7FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E69077D24699C8200ACA7FA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,12 +45,9 @@
 		2E69078C24699C8400ACA7FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E69078E24699C8400ACA7FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		2E9ACA3B24719964000F51A7 /* CommuneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommuneModel.swift; sourceTree = "<group>"; };
 		2EFDC7862469C21F00E027CB /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		2EFDC78A2469C29500E027CB /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		2EFDC78C2469C2C000E027CB /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
-		2EFDC7902469F2AA00E027CB /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
-		2EFDC7922469F34800E027CB /* ParamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamModel.swift; sourceTree = "<group>"; };
 		2EFDC7942469F6A500E027CB /* ValueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueModel.swift; sourceTree = "<group>"; };
 		2EFDC7962469F7E300E027CB /* StationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +86,6 @@
 				2E69077F24699C8200ACA7FA /* HomeViewController.swift */,
 				2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */,
 				2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */,
-				2E13864D2472EB6B00CCA1C3 /* DetailsTableViewCell.swift */,
 				2EFDC78F2469F18B00E027CB /* LogicController */,
 				2EFDC7852469C1AD00E027CB /* DataModel */,
 				2E69077B24699C8200ACA7FA /* AppDelegate.swift */,
@@ -106,11 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				2EFDC7862469C21F00E027CB /* StationModel.swift */,
-				2EFDC7902469F2AA00E027CB /* CityModel.swift */,
-				2E9ACA3B24719964000F51A7 /* CommuneModel.swift */,
 				2EFDC78A2469C29500E027CB /* SensorModel.swift */,
 				2EFDC78C2469C2C000E027CB /* IndexModel.swift */,
-				2EFDC7922469F34800E027CB /* ParamModel.swift */,
 				2EFDC7942469F6A500E027CB /* ValueModel.swift */,
 				2E13864F2472FF2000CCA1C3 /* CustomPinModel.swift */,
 			);
@@ -121,6 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				2EFDC7962469F7E300E027CB /* StationsController.swift */,
+				2E13865324733C4600CCA1C3 /* IndexController.swift */,
+				2E13865124732E3500CCA1C3 /* SensorsController.swift */,
+				2E13865524733EFA00CCA1C3 /* SensorValueController.swift */,
 			);
 			path = LogicController;
 			sourceTree = "<group>";
@@ -196,9 +193,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EFDC7912469F2AA00E027CB /* CityModel.swift in Sources */,
-				2EFDC7932469F34800E027CB /* ParamModel.swift in Sources */,
 				2E69078224699C8200ACA7FA /* MapViewController.swift in Sources */,
+				2E13865624733EFA00CCA1C3 /* SensorValueController.swift in Sources */,
 				2E9ACA3A246F3031000F51A7 /* SearchTableViewController.swift in Sources */,
 				2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */,
 				2E1386502472FF2000CCA1C3 /* CustomPinModel.swift in Sources */,
@@ -207,12 +203,12 @@
 				2EFDC7972469F7E300E027CB /* StationsController.swift in Sources */,
 				2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */,
 				2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */,
-				2E9ACA3C24719964000F51A7 /* CommuneModel.swift in Sources */,
 				2E69078824699C8200ACA7FA /* AirQuality.xcdatamodeld in Sources */,
 				2EFDC7952469F6A500E027CB /* ValueModel.swift in Sources */,
+				2E13865424733C4600CCA1C3 /* IndexController.swift in Sources */,
 				2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */,
-				2E13864E2472EB6B00CCA1C3 /* DetailsTableViewCell.swift in Sources */,
 				2E13864C2472DF7500CCA1C3 /* DetailsViewController.swift in Sources */,
+				2E13865224732E3500CCA1C3 /* SensorsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,13 +8,17 @@
 
 import UIKit
 
-class IndexModel: NSObject {
-    override init(){
-        NSLog("Init Station")
-    }
+struct IndexLevel: Codable {
+    var id: Int
     
-    var id: Int = 0
-    var stCalcDate: String = ""
-    var stIndexLevelId: Int = 0
-    var indexLevelName: String = ""
+    var stCalcDate: String?
+    var stIndexLevel: StIndexLevel?
+    var stSourceDataDate: String?
+    var stIndexStatus: Bool?
+    var stIndexCrParam: String?
+}
+
+struct StIndexLevel: Codable{
+    var id: Int
+    var indexLevelName: String
 }

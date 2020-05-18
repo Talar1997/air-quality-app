@@ -49,12 +49,11 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stationCell", for: indexPath) as? DetailsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stationCell", for: indexPath)
         
-        cell?.textLabel!.text = stations[indexPath.row].stationName
-        cell?.station = stations[indexPath.row]
+        cell.textLabel!.text = stations[indexPath.row].stationName
 
-        return cell!
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

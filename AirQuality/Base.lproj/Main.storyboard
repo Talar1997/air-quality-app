@@ -190,7 +190,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Autor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-M2-Ic6">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Autor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQb-M2-Ic6">
                                                     <rect key="frame" x="20" y="11" width="42" height="24.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -204,7 +204,6 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="c25-SF-fd3" firstAttribute="leading" secondItem="YQb-M2-Ic6" secondAttribute="trailing" constant="211" id="1TF-r8-AlN"/>
                                                 <constraint firstItem="YQb-M2-Ic6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bzT-vU-GgO" secondAttribute="leadingMargin" id="FzU-dk-QBR"/>
                                                 <constraint firstItem="YQb-M2-Ic6" firstAttribute="top" secondItem="bzT-vU-GgO" secondAttribute="topMargin" id="H6x-pR-9P6"/>
                                                 <constraint firstItem="c25-SF-fd3" firstAttribute="top" secondItem="bzT-vU-GgO" secondAttribute="topMargin" constant="-1" id="VUs-JS-26g"/>

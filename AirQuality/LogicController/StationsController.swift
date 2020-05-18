@@ -12,8 +12,6 @@ import Foundation
 
 
 public class StationsController {
-    var stations = [Station]()
-    
     init(){
         print("Stations Controller initializated")
     }

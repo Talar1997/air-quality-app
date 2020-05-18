@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ValueModel: NSObject {
-    override init(){
-        NSLog("Init Station")
-    }
-    
-    var key: String = ""
-    var values = [String : Double]()
+struct ValueArray: Codable {
+    var key: String
+    var values: [ValueObject]
+}
+
+struct ValueObject: Codable {
+    var date: String?
+    var value: Double?
 }
