@@ -77,7 +77,7 @@ Użytkownik po uruchomieniu aplikacji i zaakceptowaniu komunikatu o usłuchach l
 	\item Ustawienia
 \end{itemize}
 
-Po kliknięciu w zakładkę mapy zostanie przeniesiony do widoku, gdzie na mapie zaznaczone punktami są wszystkie dostępne stacje pomiarowe. Użytkownik może oddalać, przybliżać oraz przesuwać się po mapie. Jego lokalizacja również jest uwzględniona (z dokładnością do 100 metrów). Po kliknięciu w punkt ze stacją otwarte zostają szczegóły stacji pomiarowej, gdzie znajdują się wszystkie informacje o sensorach oraz pomiarach. Użytkownik może dodać stację pomiarową do zakładek, wówczas na stronie głównej zaraz pod najbliższą w okolicy stacją zostają wyświetlone wszystkie stacje z zakładek.
+Po kliknięciu w zakładkę mapy zostanie przeniesiony do widoku, gdzie na mapie zaznaczone punktami są wszystkie dostępne stacje pomiarowe. Użytkownik może oddalać, przybliżać oraz przesuwać się po mapie. Jego lokalizacja również jest uwzględniona (z dokładnością do 1 kilometra w celu zminimalizowania użycia energii). Po kliknięciu w punkt ze stacją otwarte zostają szczegóły stacji pomiarowej, gdzie znajdują się wszystkie informacje o sensorach oraz pomiarach. Użytkownik może dodać stację pomiarową do zakładek, wówczas na stronie głównej zaraz pod najbliższą w okolicy stacją zostają wyświetlone wszystkie stacje z zakładek.
 
 Użytkownik może również wyszukać stację po jej nazwie (która zazwyczaj zawiera nazwę miasta). W tym celu trzeba wejść na stronę główną i w prawym górnym rogu kliknąć przycisk lupy. Otworzy się wówczas widok z listą wszystkich stacji pomiarowych (około 190). By zainicjować wyszukiwanie trzeba przejechać palcem od góry do dołu, wtedy wyświetli się pasek wyszukiwania, w którym wpisać można odpowiednią frazę. Wybór stacji, tak jak w przypadku zakładki mapy otworzy nam widok ze szczegółami.
 
@@ -126,6 +126,10 @@ Lista adresów potrzebna do pobrania danych:
 	\item \verb|http://api.gios.gov.pl/pjp-api/rest/data/getData/{sensorId}| - dane pomiarowe dla sensora o podanym w adresie id
 	\item \verb|http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/{stationId}| - indeks jakości powietrza na podstawie identyfikatora stacji pomiarowej
 \end{itemize}
+\subsubsection{Framework UIKit}
+Framework pozwalający na tworzenie zaawansowanych widoków sterowanych zdarzeniami (``event-driven''). Powszechnie stosowany w aplikacjach na platformę iOS oraz tvOS. Wspiera animacje, multi-touch, dokumenty, drukowanie, zarządzanie elementami na ekranie (tekst, przyciski, itp), wyszukiwanie, dostępność oraz różne rozszerzenia.
+
+
 \subsubsection{Framework MapKit}
 Narzędzia pozwalające na wyświetlanie map wraz ze wszystkimi niezbędnymi elementami, takimi jak adnotacje, punkty, nakładki.
 
@@ -148,14 +152,22 @@ Wyrażenie \verb|let sensors = obj.station && obj.station.sensors| \newline
 Możemy zastąpić poprzez: \verb|let sensors = obj.station?.sensors|\newline Jest to ułatwienie, które w ostatnim czasie jest implementowane również w innych językach.
 
 
-Obsługa asynchronicznych funkcji też znacznie różni się od tych, do których przyzwyczaił mnie JavaScript. Pobierając dane z API oczekuje się, że widok wygeneruje się dopiero po tym jak wygenerowana zostanie odpowiedź. We wspomnianym wcześniej JavaScripcie możliwe jest to za pomocą wyrażeń \verb|async| oraz \verb|await|. Tutaj niestety sytuacja jest dużo trudniejsza. W języku Swift wymagane jest zaimplementowanie funkcji \verb|completion|. Oficjalna dokumentacja określa to jako ``funkcje domknięcia (closures)'' i przyrównuje je do bloków w Objective-C lub wyrażeń lambda w języku Java  
+Obsługa asynchronicznych funkcji też znacznie różni się od tych, do których przyzwyczaił mnie JavaScript. Pobierając dane z API oczekuje się, że widok wygeneruje się dopiero po tym jak wygenerowana zostanie odpowiedź. We wspomnianym wcześniej JavaScripcie możliwe jest to za pomocą wyrażeń \verb|async| oraz \verb|await|. Tutaj niestety sytuacja jest dużo trudniejsza. W języku Swift wymagane jest zaimplementowanie funkcji \verb|completion|. Oficjalna dokumentacja określa to jako ``funkcje domknięcia (closures)'' i przyrównuje je do bloków w Objective-C lub wyrażeń lambda w języku Java.
+
+
+API GIOŚ, które jest stosowane w aplikacji zwraca typy danych, które nie są obsługiwane w języku Swift, np \verb|null|. Wymaga to dodatkowej obsługi niektórych żądań i wymusza na programiście zaimplementowanie dodatkowych funkcji do konwersji null na obsługiwany przez kompilator \verb|nil|. Kolejnym przykładem mogą być dane dotyczące współrzędnych geograficznych, można by spodziewać się, że skoro identyfikatory przesyłane są jako Integer, to współrzędne będą typu miały typ Double lub inny zmiennoprzecinkowy typ. Niestety, większość danych (łącznie z liczbowymi) przesyłane są jako zwykły String. Implikuje to dodatkową konwersję w kodzie. Dodatkowo, narzędzia udostępniane przez Główny Inspektorat Ochrony Środowiska nie do końca spełniają wymogi aplikacji REST. Brakuje pewnej konsekwencji w nazwach węzłów końcowych, które powinny być rzeczownikami w liczbie pojedyńczej, np. adres \verb|...rest/station/findAll| powinien zostać zastąpiony przez \verb|...rest/station|. Utrudnieniem podczas korzystania z interfejsu był również fakt, że API nie zwraca pełnego kompletu danych potrzebnych do obsługi funkcjonalności w aplikacji. Nie istnieje węzeł końcowy, który zwracałby dane stacji, sensorów, wartości pomiarowych i indeksu powietrza jednocześnie. Zostało to rozbite na cztery różne adresy: najpierw musimy znaleźć interesującą nas stację, następnie na podstawie id stacji pobieramy listę dostępnych dla niej sensorów, posiadająć id dla sensorów wysyłamy żądanie HTTP by pobrać ich wartości a na samym koncu odpytujemy system na podstawie id stacji o indeks jakości powietrza. Według mnie system ten mógłby być bardziej przemyślany.
 
 
 Ostatnią trudnością w programowaniu aplikacji na iOS jest fakt, że można je tworzyć tylko na urządzeniach Apple. Według mnie praca na laptopie i małym ekranie jest dużo bardziej męcząca niż wykonywanie tego samego zadania na komputerze stacjonarnym.
 
+\subsection{Błędy}
+1. Czasami nie ładuje sie lista wszystkich stacji przy wyszukiwaniu
+2. Czasami długo ładują się pineski
+3. Źle wyświetalją się niektóre dane
+
 \subsection{Wnioski}
-1. API GIOŚ które nie jest rest
 2. Łatwy w użyciu debugger, który nie wymaga konfiguracji
+Wsparcie trybu nocnego
 4. Swift skupia się bardzo na delegatach w sposób, w który nie był mi dotąd znany
 
 \newpage
@@ -165,6 +177,8 @@ Ostatnią trudnością w programowaniu aplikacji na iOS jest fakt, że można je
 
 \begin{thebibliography}{9}
 \addcontentsline{toc}{section}{Literatura}
+\bibitem{uikit}
+\verb|https://developer.apple.com/documentation/uikit|
 \bibitem{mapkit}
 \verb|https://developer.apple.com/documentation/mapkit/|
 \bibitem{cllocationmanager}
