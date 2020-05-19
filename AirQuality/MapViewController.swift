@@ -27,17 +27,12 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    public func setPinsOnMap(){
-        self.stations.forEach { (station) in
-            addPin(station: station)
-        }
-    }
-    
     public func getStationArray(){
-        let stationsController = StationsController()
+        let stationsController = DataFetchController(endpoint: EndpointList.allStations)
+        let dataConverter = DataPrepareController<Station>()
         
         stationsController.fetchAllStations { (data, response, err) in
-            self.stations = stationsController.prepareData(data: data)
+            self.stations = dataConverter.prepareData(data: data)
             self.assignStations(arrayOfStations: self.stations)
         }
     }
@@ -45,6 +40,21 @@ class MapViewController: UIViewController {
     public func assignStations(arrayOfStations: [Station]){
         stations = arrayOfStations
         setPinsOnMap()
+    }
+    
+    public func setPinsOnMap(){
+        self.stations.forEach { (station) in
+            addPin(station: station)
+        }
+    }
+    
+    func addPin(station: Station){
+        let stationAnnotation = CustomPinModel()
+        stationAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(station.gegrLat)!, longitude: Double(station.gegrLon)!)
+        stationAnnotation.title = station.stationName
+        stationAnnotation.station = station
+        
+        self.mapView.addAnnotation(stationAnnotation)
     }
     
     func setupLocationManager(){
@@ -59,15 +69,6 @@ class MapViewController: UIViewController {
         else{
             //some alert
         }
-    }
-    
-    func addPin(station: Station){
-        let stationAnnotation = CustomPinModel()
-        stationAnnotation.coordinate = CLLocationCoordinate2D(latitude: Double(station.gegrLat)!, longitude: Double(station.gegrLon)!)
-        stationAnnotation.title = station.stationName
-        stationAnnotation.station = station
-        
-        self.mapView.addAnnotation(stationAnnotation)
     }
     
     func centerViewOnUserLocation(){

@@ -20,6 +20,18 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
         super.viewDidLoad()
     }
     
+    public func getStationArray(){
+        let stationsController = DataFetchController(endpoint: EndpointList.allStations)
+        let dataConverter = DataPrepareController<Station>()
+        
+        stationsController.fetchAllStations { (data, response, err) in
+            self.stations = dataConverter.prepareData(data: data)
+            self.allStations = self.stations
+        }
+        
+        self.tableView.reloadData()
+    }
+    
     private func searchBarSetup(){
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
@@ -27,15 +39,6 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
         searchController.searchBar.placeholder = "Szukaj stacji pomiarowych"
         searchController.searchBar.setValue("Anuluj", forKey: "cancelButtonText")
         self.navigationItem.searchController = searchController
-    }
-    
-    public func getStationArray(){
-        let stationsController = StationsController()
-        
-        stationsController.fetchAllStations { (data, response, err) in
-            self.stations = stationsController.prepareData(data: data)
-            self.allStations = self.stations
-        }
     }
 
     // MARK: - Table view data source
