@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
         let stationsController = DataFetchController(endpoint: EndpointList.allStations)
         let dataConverter = DataPrepareController<Station>()
         
-        stationsController.fetchAllStations { (data, response, err) in
+        stationsController.fetchAllData { (data, response, err) in
             self.stations = dataConverter.prepareData(data: data)
             self.assignStations(arrayOfStations: self.stations)
         }

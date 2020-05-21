@@ -11,22 +11,66 @@ import UIKit
 class DetailsViewController: UIViewController {
 
     @IBAction func BookmarkAction(_ sender: Any) {
+        print("bookmark performed")
+    }
+    
+    @IBOutlet weak var IndexNameLabel: UILabel!
+    
+    @IBOutlet weak var StationNameLabel: UILabel!
+    public var station: Station?
+    public var indexLevel: IndexLevel?
+    var sensorList = [Sensor]()
+    var sensorValueList = [ValueArray]()
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.beforeViewLoad()
+        self.afterViewLoad()
         
     }
     
-    @IBOutlet weak var TestLabel: UILabel!
+    func beforeViewLoad(){
+        self.getIndexLevel()
+        self.getSensors()
+    }
     
-    var station: Station?
+    func afterViewLoad(){
+        StationNameLabel.text = self.station?.stationName
+        IndexNameLabel.text = self.indexLevel?.stIndexLevel?.indexLevelName
+    }
     
-    override func viewDidLoad() {
-        //load index depends on idStation
-        //load sensors depends on idStation
-        //foreach sensors get values depends on stationId
-        super.viewDidLoad()
+    func getIndexLevel(){
+        let indexController = IdentifiedDataFetchController(endpoint: EndpointList.index, idObject: station!.id)
+        let dataConverter = DictionaryPrepareController<IndexLevel>()
         
-        TestLabel.text = station?.stationName
-
-        // Do any additional setup after loading the view.
+        let semaphore = DispatchSemaphore(value: 0)
+        indexController.fetchAllData { (data, response, err) in
+            let indexArray = dataConverter.prepareData(data: data)
+            self.indexLevel = indexArray[0]
+            semaphore.signal()
+        }
+        semaphore.wait(timeout: .distantFuture)
+    }
+    
+    func getSensors(){
+        let sensorsController = IdentifiedDataFetchController(endpoint: EndpointList.sensors, idObject: station!.id)
+        let dataConverter = DataPrepareController<Sensor>()
+        
+        sensorsController.fetchAllData{ (data, response, err) in
+            self.sensorList = dataConverter.prepareData(data: data)
+            self.getSensorValues()
+        }
+    }
+    
+    func getSensorValues(){
+        let dataConverter = DictionaryPrepareController<ValueArray>()
+        self.sensorList.forEach{ sensor in
+            let sensorValueController = IdentifiedDataFetchController(endpoint: EndpointList.sensorValue, idObject: sensor.id)
+            sensorValueController.fetchAllData{ (data, response, err) in
+                self.sensorValueList = dataConverter.prepareData(data: data)
+            }
+        }
     }
     
 

@@ -10,7 +10,7 @@ import UIKit
 
 struct EndpointList{
     static let allStations = "http://api.gios.gov.pl/pjp-api/rest/station/findAll"
-    static let index = "http://api.gios.gov.pl/pjp-api/rest/getIndex/"  //{idStation}
-    static let sensors = "http://api.gios.gov.pl/pjp-api/rest/sensors/" //{idStation}
-    static let sensorValue = "http://api.gios.gov.pl/pjp-api/rest/getData/" //{idSensor}
+    static let index = "http://api.gios.gov.pl/pjp-api/rest/aqindex/getIndex/"  //{idStation}
+    static let sensors = "http://api.gios.gov.pl/pjp-api/rest/station/sensors/" //{idStation}
+    static let sensorValue = "http://api.gios.gov.pl/pjp-api/rest/data/getData/" //{idSensor}
 }

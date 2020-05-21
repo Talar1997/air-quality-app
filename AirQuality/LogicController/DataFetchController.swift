@@ -15,7 +15,7 @@ class DataFetchController: DataFetchProtocol {
         self.endpoint = endpoint
     }
     
-    func fetchAllStations(completion: @escaping (Data?, URLResponse?, Error?) -> ()){
+    func fetchAllData(completion: @escaping (Data?, URLResponse?, Error?) -> ()){
         let jsonUrlString = self.endpoint
         let url = URL(string: jsonUrlString)
         

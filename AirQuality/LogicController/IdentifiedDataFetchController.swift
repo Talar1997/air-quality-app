@@ -15,6 +15,7 @@ class IdentifiedDataFetchController: DataFetchController {
         self.idObject = idObject
         super.init(endpoint: endpoint)
         self.endpoint = endpoint + String(idObject)
+        print(self.endpoint)
     }
 
 }

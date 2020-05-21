@@ -11,5 +11,5 @@ import UIKit
 protocol DataFetchProtocol {
     var endpoint: String { get set }
     
-    func fetchAllStations(completion: @escaping (Data?, URLResponse?, Error?) -> ()) -> Void
+    func fetchAllData(completion: @escaping (Data?, URLResponse?, Error?) -> ()) -> Void
 }

@@ -16,18 +16,22 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
 
     override func viewDidLoad() {
         getStationArray()
-        searchBarSetup()
         super.viewDidLoad()
+        searchBarSetup()
+        self.tableView.reloadData()
     }
     
     public func getStationArray(){
         let stationsController = DataFetchController(endpoint: EndpointList.allStations)
         let dataConverter = DataPrepareController<Station>()
         
-        stationsController.fetchAllStations { (data, response, err) in
+        let semaphore = DispatchSemaphore(value: 1)
+        stationsController.fetchAllData { (data, response, err) in
             self.stations = dataConverter.prepareData(data: data)
             self.allStations = self.stations
+            semaphore.signal()
         }
+        semaphore.wait(timeout: .distantFuture)
         
         self.tableView.reloadData()
     }
@@ -61,7 +65,9 @@ class SearchTableViewController: UITableViewController, UISearchControllerDelega
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
-        vc?.station = stations[indexPath.row]
+        
+        let station = stations[indexPath.row]
+        vc?.station = station
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 

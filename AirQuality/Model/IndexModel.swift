@@ -10,12 +10,8 @@ import UIKit
 
 struct IndexLevel: Codable {
     var id: Int
-    
     var stCalcDate: String?
     var stIndexLevel: StIndexLevel?
-    var stSourceDataDate: String?
-    var stIndexStatus: Bool?
-    var stIndexCrParam: String?
 }
 
 struct StIndexLevel: Codable{
