@@ -27,6 +27,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var COLabel: UILabel!
     @IBOutlet weak var C6H6Label: UILabel!
     @IBOutlet weak var O3Label: UILabel!
+    @IBOutlet weak var LastUpdateLabel: UILabel!
     
     @IBAction func BookmarkAction(_ sender: Any) {
         print("bookmark performed")
@@ -59,18 +60,18 @@ class DetailsViewController: UIViewController {
         
         let valSign = " µg/m³"
         for val in self.sensorValueList{
-            var value: String
-            if val.values.first?.value != nil{
-                value = (val.values.first?.value).map { String ($0)} as! String
-                value += valSign
-            }
-            else{
-                value = "Brak wartosci"
+            var value: String = "N/A"
+            for el in val.values{
+                if(el.value != nil){
+                    value = (el.value).map { String ($0)} as! String
+                    value += valSign
+                    break
+                }
             }
             
             switch val.key {
             case "PM10":
-                print(val.values)
+
                 PM10Label.text = value
             case "PM2.5":
                 PM25Label.text = value
@@ -88,8 +89,13 @@ class DetailsViewController: UIViewController {
             default:
                 print("Undefined key!")
             }
-            
         }
+        
+        var update = ""
+        if(indexLevel?.stCalcDate != nil) {
+            update = indexLevel?.stCalcDate as! String
+        }
+        LastUpdateLabel.text = "Ostatnia aktualizacja: " + update
     }
     
     func formatOutlet(elements: [UIView]){
