@@ -59,28 +59,31 @@ class DetailsViewController: UIViewController {
         
         let valSign = " µg/m³"
         for val in self.sensorValueList{
+            var value: String
+            if val.values.first?.value != nil{
+                value = (val.values.first?.value).map { String ($0)} as! String
+                value += valSign
+            }
+            else{
+                value = "Brak wartosci"
+            }
+            
             switch val.key {
             case "PM10":
-                PM10Label.text = (val.values.first?.value).map { String ($0)}
-                PM10Label.text! += valSign
+                print(val.values)
+                PM10Label.text = value
             case "PM2.5":
-                PM25Label.text = (val.values.first?.value).map { String ($0)}
-                PM25Label.text! += valSign
+                PM25Label.text = value
             case "NO2":
-                NO2Label.text = (val.values.first?.value).map { String ($0)}
-                NO2Label.text! += valSign
+                NO2Label.text = value
             case "SO2":
-                SO2Label.text = (val.values.first?.value).map { String ($0)}
-                SO2Label.text! += valSign
+                SO2Label.text = value
             case "C6H6":
-                C6H6Label.text = (val.values.first?.value).map { String ($0)}
-                C6H6Label.text! += valSign
+                C6H6Label.text = value
             case "O3":
-                O3Label.text = (val.values.first?.value).map { String ($0)}
-                O3Label.text! += valSign
+                O3Label.text = value
             case "CO":
-                COLabel.text = (val.values.first?.value).map { String ($0)}
-                COLabel.text! += valSign
+                COLabel.text = value
                 
             default:
                 print("Undefined key!")
