@@ -48,6 +48,7 @@ class DetailsViewController: UIViewController {
     func beforeViewLoad(){
         self.getIndexLevel()
         self.getSensors()
+        self.getSensorValues()
     }
     
     func afterViewLoad(){
@@ -55,6 +56,37 @@ class DetailsViewController: UIViewController {
         IndexNameLabel.text = self.indexLevel?.stIndexLevel?.indexLevelName
         
         self.formatOutlet(elements: [PMOutlet, PM10Outlet, SO2Outlet, NO2Outlet, COOutlet, C6H6Outlet, O3Outlet])
+        
+        let valSign = " µg/m³"
+        for val in self.sensorValueList{
+            switch val.key {
+            case "PM10":
+                PM10Label.text = (val.values.first?.value).map { String ($0)}
+                PM10Label.text! += valSign
+            case "PM2.5":
+                PM25Label.text = (val.values.first?.value).map { String ($0)}
+                PM25Label.text! += valSign
+            case "NO2":
+                NO2Label.text = (val.values.first?.value).map { String ($0)}
+                NO2Label.text! += valSign
+            case "SO2":
+                SO2Label.text = (val.values.first?.value).map { String ($0)}
+                SO2Label.text! += valSign
+            case "C6H6":
+                C6H6Label.text = (val.values.first?.value).map { String ($0)}
+                C6H6Label.text! += valSign
+            case "O3":
+                O3Label.text = (val.values.first?.value).map { String ($0)}
+                O3Label.text! += valSign
+            case "CO":
+                COLabel.text = (val.values.first?.value).map { String ($0)}
+                COLabel.text! += valSign
+                
+            default:
+                print("Undefined key!")
+            }
+            
+        }
     }
     
     func formatOutlet(elements: [UIView]){
@@ -82,22 +114,29 @@ class DetailsViewController: UIViewController {
         let sensorsController = IdentifiedDataFetchController(endpoint: EndpointList.sensors, idObject: station!.id)
         let dataConverter = DataPrepareController<Sensor>()
         
+        let semaphore = DispatchSemaphore(value: 0)
         sensorsController.fetchAllData{ (data, response, err) in
             self.sensorList = dataConverter.prepareData(data: data)
-            self.getSensorValues()
+            semaphore.signal()
         }
+        semaphore.wait(timeout: .distantFuture)
     }
     
     func getSensorValues(){
-        let dataConverter = DictionaryPrepareController<ValueArray>()
-        self.sensorList.forEach{ sensor in
-            let sensorValueController = IdentifiedDataFetchController(endpoint: EndpointList.sensorValue, idObject: sensor.id)
-            sensorValueController.fetchAllData{ (data, response, err) in
-                self.sensorValueList = dataConverter.prepareData(data: data)
-                print(self.sensorValueList)
-            }
-            
+        for sensor in self.sensorList{
+            getSingleValue(sensor: sensor)
         }
+    }
+    
+    func getSingleValue(sensor: Sensor){
+        let semaphore = DispatchSemaphore(value: 0)
+        let dataConverter = DictionaryPrepareController<ValueArray>()
+        let sensorValueController = IdentifiedDataFetchController(endpoint: EndpointList.sensorValue, idObject: sensor.id)
+        sensorValueController.fetchAllData{ (data, response, err) in
+            self.sensorValueList.append(contentsOf: dataConverter.prepareData(data: data))
+            semaphore.signal()
+        }
+        semaphore.wait(timeout: .distantFuture)
     }
     
 
