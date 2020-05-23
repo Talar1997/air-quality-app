@@ -17,6 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var COOutlet: UIView!
     @IBOutlet weak var C6H6Outlet: UIView!
     @IBOutlet weak var O3Outlet: UIView!
+    @IBOutlet weak var FavButtonOutlet: UIBarButtonItem!
     
     @IBOutlet weak var IndexNameLabel: UILabel!
     @IBOutlet weak var StationNameLabel: UILabel!
@@ -30,7 +31,40 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var LastUpdateLabel: UILabel!
     
     @IBAction func BookmarkAction(_ sender: Any) {
+        var isFav = false
+        
         print("bookmark performed")
+        let defaults = UserDefaults.standard
+        if var bookmarks = defaults.array(forKey: "bookmarks"){
+            for station in bookmarks{
+                if station as! Int == self.station!.id{
+                    isFav = true
+                    break
+                }
+            }
+            
+            if(isFav){
+                print("removed from bookmark")
+                bookmarks = bookmarks.filter{
+                    $0 as! Int != self.station!.id
+                }
+                self.FavButtonOutlet.image = UIImage(systemName: "star")
+            }
+            else{
+                print("added to bookmark")
+                bookmarks.append(self.station!.id)
+                self.FavButtonOutlet.image = UIImage(systemName: "star.fill")
+            }
+            
+            defaults.set(bookmarks, forKey: "bookmarks")
+        }else{
+            print("Empty bookmarks array, creating new one")
+            var bookmarks = [Int]()
+            bookmarks.append(self.station!.id)
+            self.FavButtonOutlet.image = UIImage(systemName: "star.fill")
+            defaults.set(bookmarks, forKey: "bookmarks")
+        }
+ 
     }
     
     public var station: Station?
@@ -96,6 +130,15 @@ class DetailsViewController: UIViewController {
             update = indexLevel?.stCalcDate as! String
         }
         LastUpdateLabel.text = "Ostatnia aktualizacja: " + update
+
+        let defaults = UserDefaults.standard
+        if var bookmarks = defaults.array(forKey: "bookmarks"){
+            for station in bookmarks{
+                if station as! Int == self.station!.id{
+                    self.FavButtonOutlet.image = UIImage(systemName: "star.fill")
+                }
+            }
+        }
     }
     
     func formatOutlet(elements: [UIView]){
@@ -160,3 +203,4 @@ class DetailsViewController: UIViewController {
     */
 
 }
+

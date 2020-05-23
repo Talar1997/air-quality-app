@@ -40,9 +40,18 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQ1-aL-r6T">
+                                                                <rect key="frame" x="346" y="5" width="23" height="22"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                <state key="normal" image="arrow.right.circle.fill" catalog="system"/>
+                                                                <connections>
+                                                                    <action selector="ViewDetails:" destination="9pv-A4-QxB" eventType="touchUpInside" id="MTq-3A-Iz7"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="UQ1-aL-r6T" secondAttribute="trailing" constant="5" id="1A9-3M-9re"/>
                                                             <constraint firstItem="UpW-2o-HN8" firstAttribute="leading" secondItem="Sfa-My-FLh" secondAttribute="leading" constant="8" id="9nK-BP-wku"/>
                                                             <constraint firstItem="GRx-Af-1jb" firstAttribute="top" secondItem="Sfa-My-FLh" secondAttribute="top" constant="10" id="Gey-SM-3BB"/>
                                                             <constraint firstItem="GRx-Af-1jb" firstAttribute="leading" secondItem="Sfa-My-FLh" secondAttribute="leading" constant="10" id="SUB-Ey-IKd"/>
@@ -50,6 +59,7 @@
                                                             <constraint firstAttribute="bottom" secondItem="UpW-2o-HN8" secondAttribute="bottom" constant="8" id="e8i-gS-5WZ"/>
                                                             <constraint firstItem="UpW-2o-HN8" firstAttribute="top" secondItem="GRx-Af-1jb" secondAttribute="bottom" constant="10.5" id="kkZ-n6-M3d"/>
                                                             <constraint firstAttribute="trailing" secondItem="GRx-Af-1jb" secondAttribute="trailing" constant="10" id="qJb-az-n2y"/>
+                                                            <constraint firstItem="UQ1-aL-r6T" firstAttribute="top" secondItem="Sfa-My-FLh" secondAttribute="top" constant="5" id="rKo-5f-km8"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -136,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="1214"/>
+            <point key="canvasLocation" x="344.92753623188406" y="1213.3928571428571"/>
         </scene>
         <!--Mapa-->
         <scene sceneID="wg7-f3-ORb">
@@ -1028,6 +1038,7 @@
                         <outlet property="C6H6Outlet" destination="CLH-2x-gR9" id="cCq-uJ-07C"/>
                         <outlet property="COLabel" destination="azK-sO-NGJ" id="jnz-Ty-pyf"/>
                         <outlet property="COOutlet" destination="mNW-dq-yhp" id="siC-GM-jXr"/>
+                        <outlet property="FavButtonOutlet" destination="uNI-TC-ZoK" id="kJe-oB-YDx"/>
                         <outlet property="IndexNameLabel" destination="ZPR-Tq-KMy" id="3Ea-vc-vop"/>
                         <outlet property="LastUpdateLabel" destination="THS-zE-xQF" id="Zbt-uq-k0V"/>
                         <outlet property="NO2Label" destination="Cjo-aT-EzQ" id="U3Z-Uk-YhZ"/>
@@ -1161,7 +1172,7 @@
                     <tabBarItem key="tabBarItem" title="Mapa" image="map.fill" catalog="system" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="8cn-bf-G58">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1178,6 +1189,7 @@
         <segue reference="VEW-Kf-178"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="map.fill" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>

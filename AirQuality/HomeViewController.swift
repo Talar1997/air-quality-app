@@ -13,6 +13,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var NearlyOutlet: UIView!
     @IBOutlet weak var NearlyIndex: UILabel!
     @IBOutlet weak var NearlyNameLabel: UILabel!
+    @IBAction func ViewDetails(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
+        
+        let station = nearestStation
+        vc?.station = station
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
     
     var userLocation: CLLocation?
     var stations = [Station]()
@@ -69,9 +76,9 @@ class HomeViewController: UIViewController {
             let stationLocation = CLLocation(latitude: lat, longitude: lon)
             let distance = self.userLocation?.distance(from: stationLocation)
             
-            print("Considering: ", station.stationName, " distance btwn user loc: ", distance)
+            //print("Considering: ", station.stationName, " distance btwn user loc: ", distance)
             if(smallestDistance == nil || distance! < smallestDistance!){
-                print("^^^Now nearest")
+                //print("^^^Now nearest")
                 self.nearestStation = station
                 smallestDistance = distance
             }
@@ -79,16 +86,30 @@ class HomeViewController: UIViewController {
     }
     
     public func findBookmarkedStations(){
-        
+       /* let defaults = UserDefaults.standard
+        guard let bookmarks = defaults.array(forKey: "bookmark") else { return }
+        for stationId in bookmarks{
+            for station in self.stations{
+                //find station with stationId and append to array
+                //for this array get index
+            }
+            self.getIndex(id: stationId as! Int)
+        }*/
     }
     
-    public func requestForIndex(){
-        self.getBookmarkedIndexes()
+    public func getIndex(id: Int){
+        let indexController = IdentifiedDataFetchController(endpoint: EndpointList.index, idObject: id)
+            let dataConverter = DictionaryPrepareController<IndexLevel>()
+            
+            let semaphore = DispatchSemaphore(value: 0)
+            
+            indexController.fetchAllData { (data, response, err) in
+                let indexArray = dataConverter.prepareData(data: data)
+                //append index to station array
+                semaphore.signal()
+            }
         
-    }
-    
-    public func getBookmarkedIndexes(){
-        
+            semaphore.wait(timeout: .distantFuture)
     }
     
     public func getNearestIndex(){
