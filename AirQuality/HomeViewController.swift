@@ -9,10 +9,12 @@
 import UIKit
 import CoreLocation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var NearlyOutlet: UIView!
     @IBOutlet weak var NearlyIndex: UILabel!
     @IBOutlet weak var NearlyNameLabel: UILabel!
+    @IBOutlet weak var TableViewOutlet: UITableView!
+    
     @IBAction func ViewDetails(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
         
@@ -29,17 +31,24 @@ class HomeViewController: UIViewController {
     var indexLevel: IndexLevel?
 
     override func viewDidLoad() {
+        TableViewOutlet.delegate = self
+        TableViewOutlet.dataSource = self
         locationManager.delegate = self
         self.checkLocationServices()
     
         self.getStationArray()
-        self.getUserLocation()
         self.findNearestStation()
         self.getNearestIndex()
         
-        self.findBookmarkedStations()
+        self.reloadBookmarks()
         super.viewDidLoad()
         self.afterViewLoad()
+        self.TableViewOutlet.reloadData()
+    }
+    
+    func reloadBookmarks(){
+        self.findBookmarkedStations()
+        self.TableViewOutlet.reloadData()
     }
     
     func afterViewLoad(){
@@ -47,7 +56,7 @@ class HomeViewController: UIViewController {
         NearlyOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         NearlyOutlet.layer.cornerRadius = 8
         
-        self.NearlyIndex.text = self.indexLevel?.stIndexLevel?.indexLevelName
+        self.NearlyIndex.text = "Jakość powietrza: " + (self.indexLevel?.stIndexLevel!.indexLevelName)!
         self.NearlyNameLabel.text = self.nearestStation?.stationName
     }
     
@@ -61,10 +70,6 @@ class HomeViewController: UIViewController {
             semaphor.signal()
         }
         semaphor.wait(timeout: .distantFuture)
-    }
-    
-    public func getUserLocation(){
-        //
     }
     
     public func findNearestStation(){
@@ -86,18 +91,21 @@ class HomeViewController: UIViewController {
     }
     
     public func findBookmarkedStations(){
-       /* let defaults = UserDefaults.standard
-        guard let bookmarks = defaults.array(forKey: "bookmark") else { return }
+       let defaults = UserDefaults.standard
+        guard let bookmarks = defaults.array(forKey: "bookmarks") else { return }
         for stationId in bookmarks{
             for station in self.stations{
-                //find station with stationId and append to array
-                //for this array get index
+                if(station.id == stationId as! Int){
+                    bookmarkedStations.append(station)
+                    break
+                }
             }
-            self.getIndex(id: stationId as! Int)
-        }*/
+        }
     }
     
-    public func getIndex(id: Int){
+    public func getIndex(id: Int) -> String{
+        var index = "Brak indeksu"
+        
         let indexController = IdentifiedDataFetchController(endpoint: EndpointList.index, idObject: id)
             let dataConverter = DictionaryPrepareController<IndexLevel>()
             
@@ -105,11 +113,12 @@ class HomeViewController: UIViewController {
             
             indexController.fetchAllData { (data, response, err) in
                 let indexArray = dataConverter.prepareData(data: data)
-                //append index to station array
+                index = indexArray[0].stIndexLevel?.indexLevelName as! String
                 semaphore.signal()
             }
         
             semaphore.wait(timeout: .distantFuture)
+        return index
     }
     
     public func getNearestIndex(){
@@ -121,7 +130,7 @@ class HomeViewController: UIViewController {
         indexController.fetchAllData { (data, response, err) in
             let indexArray = dataConverter.prepareData(data: data)
             self.indexLevel = indexArray[0]
-            print(self.indexLevel)
+            //print(self.indexLevel)
             semaphore.signal()
         }
     
@@ -166,6 +175,29 @@ class HomeViewController: UIViewController {
             break
         }
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.bookmarkedStations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bookmarkedCell", for: indexPath) as! FavTableViewCell
+        
+        cell.NameLabel.text = self.bookmarkedStations[indexPath.row].stationName
+        cell.IndexLabel.text = self.getIndex(id: self.bookmarkedStations[indexPath.row].id)
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detailsView") as? DetailsViewController
+        
+        let station = bookmarkedStations[indexPath.row]
+        vc?.station = station
+        self.navigationController?.pushViewController(vc!, animated: true)
+        tableView.reloadData()
+    }
+
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -173,7 +205,6 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         guard let location = locations.last else { return }
         self.userLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        print("Trying to get user location: ", self.userLocation, location)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

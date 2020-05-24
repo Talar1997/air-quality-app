@@ -25,6 +25,7 @@
 		2ED77460247436E000AE0556 /* IdentifiedDataFetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED7745F247436E000AE0556 /* IdentifiedDataFetchController.swift */; };
 		2ED77464247596AD00AE0556 /* DictionaryPrepareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED77463247596AD00AE0556 /* DictionaryPrepareController.swift */; };
 		2ED774662475A3D100AE0556 /* DetailsDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED774652475A3D100AE0556 /* DetailsDataLoader.swift */; };
+		2EF80486247AA72E00F0C427 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF80485247AA72E00F0C427 /* FavTableViewCell.swift */; };
 		2EFDC7872469C21F00E027CB /* StationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC7862469C21F00E027CB /* StationModel.swift */; };
 		2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78A2469C29500E027CB /* SensorModel.swift */; };
 		2EFDC78D2469C2C000E027CB /* IndexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFDC78C2469C2C000E027CB /* IndexModel.swift */; };
@@ -52,6 +53,7 @@
 		2ED7745F247436E000AE0556 /* IdentifiedDataFetchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiedDataFetchController.swift; sourceTree = "<group>"; };
 		2ED77463247596AD00AE0556 /* DictionaryPrepareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryPrepareController.swift; sourceTree = "<group>"; };
 		2ED774652475A3D100AE0556 /* DetailsDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsDataLoader.swift; sourceTree = "<group>"; };
+		2EF80485247AA72E00F0C427 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
 		2EFDC7862469C21F00E027CB /* StationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationModel.swift; sourceTree = "<group>"; };
 		2EFDC78A2469C29500E027CB /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		2EFDC78C2469C2C000E027CB /* IndexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexModel.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				2E69077F24699C8200ACA7FA /* HomeViewController.swift */,
 				2E9ACA39246F3031000F51A7 /* SearchTableViewController.swift */,
 				2E13864B2472DF7500CCA1C3 /* DetailsViewController.swift */,
+				2EF80485247AA72E00F0C427 /* FavTableViewCell.swift */,
 				2ED7745424742BBF00AE0556 /* Helpers */,
 				2EFDC78F2469F18B00E027CB /* LogicController */,
 				2EFDC7852469C1AD00E027CB /* Model */,
@@ -219,6 +222,7 @@
 				2E69078024699C8200ACA7FA /* HomeViewController.swift in Sources */,
 				2ED77464247596AD00AE0556 /* DictionaryPrepareController.swift in Sources */,
 				2EFDC78B2469C29500E027CB /* SensorModel.swift in Sources */,
+				2EF80486247AA72E00F0C427 /* FavTableViewCell.swift in Sources */,
 				2E69077C24699C8200ACA7FA /* AppDelegate.swift in Sources */,
 				2ED7745A2474337C00AE0556 /* DataFetchProtocol.swift in Sources */,
 				2E69077E24699C8200ACA7FA /* SceneDelegate.swift in Sources */,
