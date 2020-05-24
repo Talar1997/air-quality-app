@@ -29,6 +29,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var bookmarkedStations = [Station]()
     let locationManager = CLLocationManager()
     var indexLevel: IndexLevel?
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.reloadBookmarks()
+    }
 
     override func viewDidLoad() {
         TableViewOutlet.delegate = self
@@ -47,6 +51,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func reloadBookmarks(){
+        self.bookmarkedStations = [Station]()
         self.findBookmarkedStations()
         self.TableViewOutlet.reloadData()
     }
