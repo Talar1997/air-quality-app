@@ -7,5 +7,6 @@ Mobile application for IOS to monitor air quality in Poland. Application is usin
 ![gallery-image][1]
 ![gallery-image][2]
 
-[1]: https://i.imgur.com/HYKiA5F.png
-[2]: https://i.imgur.com/EKLRfU4.png
+
+[1]: https://raw.githubusercontent.com/Talar1997/air-quality-app/master/Dokumentacja/img/img1.png
+[2]: https://raw.githubusercontent.com/Talar1997/air-quality-app/master/Dokumentacja/img/img2.png
